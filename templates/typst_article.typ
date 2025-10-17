@@ -1,7 +1,6 @@
-// Document setup
 #set document(
-  title: "Title",
-  author: ("Me", "You"),
+  title: "Your Article Title Here",
+  author: "Erico Silva",
 )
 
 #set page(
@@ -12,42 +11,37 @@
 )
 
 #set text(
-  font: "New Computer Modern",
-  size: 11pt,
+  font: "Concrete Math",
+  size: 10.5pt,
   lang: "en",
+  weight: "light",
 )
+
+#set heading(
+  numbering: "1.",
+  supplement: [Section],
+)
+
+#show heading.where(level: 1): set text(weight: "medium", size: 14pt)
+#show heading.where(level: 2): set text(weight: "medium", size: 12pt)
+
+#show math.equation: set text(font: ("Concrete Math"))
 
 #set par(
   justify: true,
   leading: 0.65em,
 )
 
-#set heading(numbering: "1.")
-
 // Title and author information
 #align(center)[
-  #text(size: 17pt, weight: "bold")[
+  #text(size: 17pt, weight: "medium")[
     Your Article Title Here
   ]
   
   #v(1em)
   
-  #text(size: 12pt)[
-    First Author#super[1], Second Author#super[2]
-  ]
-  
-  #v(0.5em)
-  
-  #text(size: 10pt, style: "italic")[
-    #super[1]DeCODE Genetics \
-    #super[2]Somewhere Else
-  ]
-  
-  #v(0.5em)
-  
-  #text(size: 10pt)[
-    #link("mailto:erics@decode.is")[erics\@decode.is],
-    #link("mailto:author2@email.com")[author2\@email.com]
+  #text(size: 11pt, weight: "light")[
+    Erico Silva#footnote[DeCODE Genetics. Email: #link("mailto:erics@decode.is")[#text(font: "Courier New")[erics\@decode.is]]]
   ]
 ]
 
@@ -55,33 +49,35 @@
 
 // Abstract
 #align(center)[
-  #text(weight: "bold", size: 12pt)[Abstract]
+  #text(weight: "medium", size: 12pt)[Abstract]
 ]
 
 #pad(x: 2em)[
-  #text(size: 10pt)[
-    This is the abstract. 
+  #text(size: 9.5pt)[
+    This is the abstract of your article. 
   ]
 ]
 
 #v(2em)
 
-// Main content here
+// Main content starts here
 = Introduction
 
-This is the introduction section.
+This is the introduction section. One can write content here with automatic paragraph formatting and justification. Citations can be added using the bibliography feature [1] or [2].
+
+Here's a second paragraph demonstrating the spacing and formatting. The template uses justified text alignment and appropriate line spacing for readability.
 
 = Mathematical Content
 
 == Inline and Display Math
 
-Inline math $alpha + beta = gamma$ and display equations:
+Typst supports both inline math like $alpha + beta = gamma$ and display equations:
 
 $ 
   f(x) = integral_0^x e^(-t^2) dif t 
 $
 
-Can also create numbered equations:
+You can also create numbered equations:
 
 #set math.equation(numbering: "(1)")
 
@@ -95,11 +91,12 @@ And reference them: As shown in @eq:gauss, the divergence of the electric field 
 
 #let theorem(title, content) = {
   block(
-    fill: rgb("f0f0f0"),
+    fill: rgb("f5f5f5"),
     inset: 10pt,
-    radius: 4pt,
+    radius: 2pt,
+    stroke: (left: 3pt + rgb("4a90e2")),
     [
-      *Theorem #title.* #content
+      #text(weight: "medium")[Theorem #title.] #content
     ]
   )
 }
@@ -170,7 +167,7 @@ def fibonacci(n):
 
 = Conclusion
 
-Concluding the template
+This template provides a minimal yet functional starting point for academic articles in Typst. It includes all the essential components while maintaining clean, readable formatting.
 
 = Acknowledgments
 
@@ -190,20 +187,20 @@ The authors would like to thank...
 
 #ref(
   "1",
-  "Smith, J. and Doe, A.",
-  "An Important Paper on Something",
-  "Journal of Examples",
-  "2023"
+  "Daubechies, I.",
+  "Ten Lectures on Wavelets",
+  "SIAM",
+  "1992"
 )
 
 #ref(
   "2", 
-  "Johnson, B. et al.",
-  "Another Significant Contribution",
-  "Nature Reviews",
-  "2024"
+  "Mallat, S.",
+  "A Wavelet Tour of Signal Processing",
+  "Academic Press",
+  "2008"
 )
 
-// Note: For actual use, one would typically use Typst's bibliography 
+// Note: For actual use, use Typst's bibliography 
 // management with a .bib file:
 // #bibliography("references.bib")
