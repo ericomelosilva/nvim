@@ -1,0 +1,68 @@
+{
+  "plugins": {
+    "lean.nvim": {
+      "rev": "a97dbac",
+      "src": "git@github.com:Julian/lean.nvim.git"
+    },
+    "lua-utils.nvim": {
+      "rev": "e565749",
+      "src": "git@github.com:nvim-neorg/lua-utils.nvim.git"
+    },
+    "mini.icons": {
+      "rev": "2847986",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.pick": {
+      "rev": "96ee37d",
+      "src": "git@github.com:nvim-mini/mini.pick.git"
+    },
+    "mini.statusline": {
+      "rev": "faa3977",
+      "src": "git@github.com:nvim-mini/mini.statusline.git"
+    },
+    "neorg": {
+      "rev": "1f40253c",
+      "src": "git@github.com:nvim-neorg/neorg.git"
+    },
+    "nui.nvim": {
+      "rev": "de74099",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "ac98db2",
+      "src": "git@github.com:neovim/nvim-lspconfig.git"
+    },
+    "nvim-nio": {
+      "rev": "21f5324",
+      "src": "https://github.com/nvim-neotest/nvim-nio"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "git@github.com:nvim-treesitter/nvim-treesitter.git"
+    },
+    "oil.nvim": {
+      "rev": "7194872",
+      "src": "git@github.com:stevearc/oil.nvim.git"
+    },
+    "pathlib.nvim": {
+      "rev": "57e5598",
+      "src": "https://github.com/pysan3/pathlib.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "git@github.com:nvim-lua/plenary.nvim.git"
+    },
+    "typst-preview.nvim": {
+      "rev": "1603d37",
+      "src": "git@github.com:chomosuke/typst-preview.nvim.git"
+    },
+    "vague.nvim": {
+      "rev": "cdbfdc8",
+      "src": "git@github.com:vague-theme/vague.nvim.git"
+    },
+    "vimtex": {
+      "rev": "be9deac3",
+      "src": "git@github.com:lervag/vimtex.git"
+    }
+  }
+}
