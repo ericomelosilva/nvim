@@ -10,6 +10,7 @@ vim.o.signcolumn = "yes"
 vim.g.mapleader = "," 
 
 vim.keymap.set('n', '<leader>s', ':w<CR>')
+vim.keymap.set('n','<leader>q', ':w<CR> :q<CR>')
 
 
 --Plugins
