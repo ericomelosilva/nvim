@@ -2,11 +2,15 @@
   "plugins": {
     "lean.nvim": {
       "rev": "a97dbac",
-      "src": "git@github.com:Julian/lean.nvim.git"
+      "src": "https://github.com/Julian/lean.nvim"
     },
     "lua-utils.nvim": {
       "rev": "e565749",
       "src": "git@github.com:nvim-neorg/lua-utils.nvim.git"
+    },
+    "mini.completion": {
+      "rev": "2ab1c80",
+      "src": "https://github.com/echasnovski/mini.completion"
     },
     "mini.icons": {
       "rev": "2847986",
@@ -42,7 +46,7 @@
     },
     "oil.nvim": {
       "rev": "7194872",
-      "src": "git@github.com:stevearc/oil.nvim.git"
+      "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "pathlib.nvim": {
       "rev": "57e5598",
@@ -50,7 +54,7 @@
     },
     "plenary.nvim": {
       "rev": "b9fd522",
-      "src": "git@github.com:nvim-lua/plenary.nvim.git"
+      "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "typst-preview.nvim": {
       "rev": "1603d37",

@@ -2,7 +2,6 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.swapfile = false
 vim.o.wrap = false
-vim.o.digraph = true
 vim.o.tabstop = 4
 vim.o.winborder = "rounded"
 vim.o.clipboard = "unnamedplus"
@@ -11,6 +10,8 @@ vim.g.mapleader = ","
 
 vim.keymap.set('n', '<leader>s', ':w<CR>')
 vim.keymap.set('n','<leader>q', ':w<CR> :q<CR>')
+vim.keymap.set('n', '<leader>di', ':set digraph<CR>')
+vim.keymap.set('n', '<leader>id', ':set nodigraph<CR>')
 
 
 --Plugins
@@ -32,6 +33,7 @@ vim.pack.add({
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 	{ src = "https://github.com/pysan3/pathlib.nvim" },
+	{ src = "https://github.com/echasnovski/mini.completion" },
 })
 
 require("lean").setup({
@@ -42,6 +44,7 @@ require("lean").setup({
 require("mini.pick").setup()
 require("mini.statusline").setup()
 require("mini.icons").setup()
+require("mini.completion").setup()
 require("oil").setup()
 
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
@@ -62,7 +65,15 @@ require("neorg").setup({
 vim.lsp.config("pyright", {})
 vim.lsp.enable("pyright")
 
-vim.lsp.config("rust_analyzer", {})
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      inlayHints = {
+        enable = true,
+      },
+    },
+  },
+})
 vim.lsp.enable("rust_analyzer")
 
 vim.lsp.config("texlab", {})
@@ -146,16 +157,5 @@ vim.api.nvim_create_autocmd("FileType", {
 	vim.opt_local.textwidth = 80
 	vim.keymap.set("n", "<leader>nn", "<cmd>Neorg index<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "<leader>nj", "<cmd>Neorg journal today<CR>", { buffer = true, silent = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-    vim.keymap.set("i", "<C-Space>", "<C-x><C-o>", { buffer = ev.buf, silent = true })
-    vim.keymap.set("i", "<Tab>",     function() return vim.fn.pumvisible()==1 and "<C-n>" or "<Tab>" end,
-      { buffer = ev.buf, expr = true, silent = true })
-    vim.keymap.set("i", "<S-Tab>",   function() return vim.fn.pumvisible()==1 and "<C-p>" or "<S-Tab>" end,
-      { buffer = ev.buf, expr = true, silent = true })
   end,
 })
