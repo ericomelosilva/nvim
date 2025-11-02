@@ -12,6 +12,9 @@ vim.keymap.set('n', '<leader>s', ':w<CR>')
 vim.keymap.set('n','<leader>q', ':w<CR> :q<CR>')
 vim.keymap.set('n', '<leader>di', ':set digraph<CR>')
 vim.keymap.set('n', '<leader>id', ':set nodigraph<CR>')
+vim.keymap.set('n', '<leader>[', ':bprevious<CR>')
+vim.keymap.set('n', '<leader>]', ':bnext<CR>')
+vim.keymap.set('n', '<leader>x', ':bdelete<CR>')
 
 
 --Plugins
@@ -51,14 +54,26 @@ require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 require("neorg").setup({
   load = {
     ["core.defaults"] = {},
-    ["core.concealer"] = {},
+    ["core.concealer"] = {
+			config = {
+					folds = {
+							insert_closed = false,
+					}
+			}
+	},
     ["core.dirman"] = {
       config = {
         workspaces = { notes = "~/notes" },
         default_workspace = "notes",
+		index = "index.norg",
       },
     },
-    ["core.journal"] = { config = { strategy = "flat" } }, -- uses notes/journal/
+    ["core.journal"] = { 
+			config = { 
+				strategy = "nested",
+				workspace = "notes",
+		} 
+	},
   },
 })
 
@@ -86,7 +101,8 @@ vim.lsp.config("lua_ls", {})
 vim.lsp.enable("lua_ls")
 
 vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
-vim.keymap.set('n', '<leader>oil', ':Oil<CR>')
+vim.keymap.set('n', '<leader>b', ':Pick buffers<CR>')
+vim.keymap.set('n', '<leader>,', ':Oil<CR>')
 
 -- Aesthetic options
 
@@ -94,6 +110,17 @@ vim.cmd("colorscheme vague")
 vim.opt.fillchars:append({ eob = " " })
 
 --FileType specific commands.
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local opts = { buffer = args.buf, silent = true }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "typst",
@@ -157,5 +184,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	vim.opt_local.textwidth = 80
 	vim.keymap.set("n", "<leader>nn", "<cmd>Neorg index<CR>", { buffer = true, silent = true })
     vim.keymap.set("n", "<leader>nj", "<cmd>Neorg journal today<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<leader>njy", "<cmd>Neorg journal yesterday<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<leader>njt", "<cmd>Neorg journal tomorrow<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<leader>nt", "<cmd>Neorg toc<CR>", { buffer = true, silent = true })
   end,
 })
