@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "image.nvim": {
+      "rev": "da2be65c153ba15a14a342b05591652a6df70d58",
+      "src": "https://github.com/3rd/image.nvim"
+    },
     "lean.nvim": {
       "rev": "a97dbac",
       "src": "https://github.com/Julian/lean.nvim"
@@ -23,6 +27,10 @@
     "mini.statusline": {
       "rev": "faa3977",
       "src": "git@github.com:nvim-mini/mini.statusline.git"
+    },
+    "molten-nvim": {
+      "rev": "c1db39e78fe18559d8f2204bf5c4d476bdc80d3e",
+      "src": "https://github.com/benlubas/molten-nvim"
     },
     "neorg": {
       "rev": "1f40253c",

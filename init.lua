@@ -37,6 +37,27 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 	{ src = "https://github.com/pysan3/pathlib.nvim" },
 	{ src = "https://github.com/echasnovski/mini.completion" },
+	{ src = "https://github.com/benlubas/molten-nvim" },
+	{ src = "https://github.com/3rd/image.nvim" },
+})
+
+vim.g.molten_image_provider = "image.nvim"
+vim.g.molten_output_win_max_height = 20
+vim.g.molten_auto_open_output = true
+
+require("image").setup({
+  backend = "kitty",
+  processor = "magick_cli",
+
+  integrations = {},
+
+  max_width = 100,
+  max_height = 12,
+  max_width_window_percentage = math.huge,
+  max_height_window_percentage = math.huge,
+
+  window_overlap_clear_enabled = true,
+  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
 })
 
 require("lean").setup({
@@ -100,6 +121,13 @@ vim.lsp.enable("tinymist")
 vim.lsp.config("lua_ls", {})
 vim.lsp.enable("lua_ls")
 
+vim.lsp.config("clangd", {})
+vim.lsp.enable("clangd")
+
+vim.lsp.config("jdtls", {})
+vim.lsp.enable("jdtls")
+
+
 vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
 vim.keymap.set('n', '<leader>b', ':Pick buffers<CR>')
 vim.keymap.set('n', '<leader>,', ':Oil<CR>')
@@ -110,6 +138,53 @@ vim.cmd("colorscheme vague")
 vim.opt.fillchars:append({ eob = " " })
 
 --FileType specific commands.
+
+--Molten commands--
+
+vim.g.molten_auto_open_output = true
+vim.g.molten_wrap_output = true
+
+vim.g.molten_virt_text_output = true
+
+vim.g.molten_image_provider = "image.nvim"
+vim.g.molten_image_location = "float"
+
+vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", {
+  silent = true,
+  desc = "Molten init",
+})
+
+vim.keymap.set("n", "<leader>ml", ":MoltenEvaluateLine<CR>", {
+  silent = true,
+  desc = "Molten eval line",
+})
+
+vim.keymap.set("n", "<leader>me", ":MoltenEvaluateOperator<CR>ip", {
+  silent = true,
+  desc = "Molten eval paragraph/block",
+})
+
+vim.keymap.set("v", "<leader>me", ":<C-u>MoltenEvaluateVisual<CR>gv", {
+  silent = true,
+  desc = "Molten eval visual selection",
+})
+
+vim.keymap.set("n", "<leader>mo", ":MoltenShowOutput<CR>", {
+  silent = true,
+  desc = "Molten show output",
+})
+
+vim.keymap.set("n", "<leader>mO", ":noautocmd MoltenEnterOutput<CR>", {
+  silent = true,
+  desc = "Molten enter output",
+})
+
+vim.keymap.set("n", "<leader>mr", ":MoltenReevaluateCell<CR>", {
+  silent = true,
+  desc = "Molten re-evaluate cell",
+})
+
+--LSPs--
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
