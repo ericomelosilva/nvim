@@ -8,10 +8,6 @@
       "rev": "a97dbac",
       "src": "https://github.com/Julian/lean.nvim"
     },
-    "lua-utils.nvim": {
-      "rev": "e565749",
-      "src": "git@github.com:nvim-neorg/lua-utils.nvim.git"
-    },
     "mini.completion": {
       "rev": "2ab1c80",
       "src": "https://github.com/echasnovski/mini.completion"
@@ -32,21 +28,9 @@
       "rev": "c1db39e78fe18559d8f2204bf5c4d476bdc80d3e",
       "src": "https://github.com/benlubas/molten-nvim"
     },
-    "neorg": {
-      "rev": "1f40253c",
-      "src": "git@github.com:nvim-neorg/neorg.git"
-    },
-    "nui.nvim": {
-      "rev": "de74099",
-      "src": "https://github.com/MunifTanjim/nui.nvim"
-    },
     "nvim-lspconfig": {
       "rev": "ac98db2",
       "src": "git@github.com:neovim/nvim-lspconfig.git"
-    },
-    "nvim-nio": {
-      "rev": "21f5324",
-      "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
       "rev": "42fc28ba",
@@ -55,10 +39,6 @@
     "oil.nvim": {
       "rev": "7194872",
       "src": "https://github.com/stevearc/oil.nvim.git"
-    },
-    "pathlib.nvim": {
-      "rev": "57e5598",
-      "src": "https://github.com/pysan3/pathlib.nvim"
     },
     "plenary.nvim": {
       "rev": "b9fd522",

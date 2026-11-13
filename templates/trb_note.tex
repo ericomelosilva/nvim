@@ -1,0 +1,94 @@
+% Two River Bio working note on the trbdoc class (trb-branding, latex/trbdoc v0.6.0).
+% Compile:  latexmk note.tex        (latexmkrc selects LuaLaTeX and finds ./trbdoc)
+% Audience: `internal' = machine logo + confidential footer; `external' = horizontal logo + (c) footer.
+\documentclass[note,internal]{trbdoc}
+
+% Optional extras; delete what you do not use. Do not load amssymb or amsfonts.
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{multicol}
+\usepackage{siunitx}
+
+% --- Title block ---------------------------------------------------------------
+\title{Note title}
+\subtitle{One line that says what this note decides, proposes or reports}
+\doctype{Working note}            % small label above the title and in the footer
+\author{Your Name}
+\date{20 October 2026}
+
+% --- Your macros ---------------------------------------------------------------
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+
+\begin{document}
+\maketitle
+
+% Open with the claim. Two to four sentences: what the question was, what the answer is,
+% and what should happen next. A reader who stops here should know the outcome.
+State the claim first, then the evidence.\cite{example2026}
+
+\paragraph{Context.}
+Why this note exists: the question, the decision it feeds, and what was already known.
+Run-in heads carry the argument; write \verb|\paragraph{Heading.}| and continue the
+sentence. Use \verb|\section| only when the note grows long enough to need navigation.
+
+\paragraph{What we did.}
+Method, data and settings, in enough detail to repeat. Put numbers in a table rather
+than in prose.
+
+{\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}X>{\raggedleft\arraybackslash}p{2cm}@{}}
+\toprule
+\textbf{Item} & \textbf{Description} & \textbf{Value}\\
+\midrule
+Row one & What it is and where it came from & \num{0.00}\\
+Row two & What it is and where it came from & \num{0.00}\\
+\bottomrule
+\end{tabularx}}
+
+\paragraph{What we learned.}
+Results and their interpretation. Say what surprised you and what did not.
+Math is set in Concrete Math to match the text:
+\[
+  \hat\theta = \arg\max_{\theta}\; \E_{(x,y)\sim\mathcal D}\bigl[\log p_\theta(y\mid x)\bigr],
+  \qquad x\in\R^k.
+\]
+
+\paragraph{Open questions.}
+\begin{itemize}
+  \item What is still unresolved, and what evidence would settle it.
+  \item Use \textcolor{trbAccent}{\texttt{trbAccent}} (Splash) only for the one thing that
+    must not be missed; everything else stays in the text color.
+\end{itemize}
+
+\paragraph{Next step.}
+The single concrete action this note commits to, who owns it, and by when.
+
+% Optional figure. Colors by name only: trbHeading, trbLink, trbAccentBlue, trbMuted,
+% trbRule, trbSurface, trbAccent, and every ramp shade (trbHudson500, trbEast700, ...).
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=trbRule,fill=trbSurface,rounded corners=2pt,align=center,
+    minimum height=8mm,text width=2.6cm,inner sep=3pt,font=\small},
+  arr/.style={-{Latex[length=2mm]},draw=trbLink,line width=0.8pt}]
+\node[box] (a) {Step one};
+\node[box,right=5mm of a] (b) {Step two};
+\node[box,right=5mm of b] (c) {Step three};
+\draw[arr] (a)--(b); \draw[arr] (b)--(c);
+\end{tikzpicture}
+\caption{Caption that states what the figure shows, not just what it is.}
+\end{figure}
+
+% References: two compact columns. Delete this block if the note cites nothing.
+\begingroup
+\renewcommand{\bibsection}{}
+\setlength{\columnsep}{16pt}
+\begin{multicols}{2}[\paragraph{References}]
+\raggedright
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{multicols}
+\endgroup
+\end{document}
